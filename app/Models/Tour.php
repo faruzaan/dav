@@ -12,6 +12,6 @@ class Tour extends Model
     protected $table = 'tb_tour';
 
     protected $fillable = [
-        'nama_tour'
+        'nama_tour', 'duration'
     ];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tour;
+use App\Models\TourDetail;
 
 class TourController extends Controller
 {
@@ -30,7 +31,7 @@ class TourController extends Controller
     public function edit(Request $request){
         $input = $request->all();
 
-        $data['id_island']             = $input['id'];
+        $data['id_island']      = $input['id'];
         $data['nama_island']    = $input['nama_island'];
 
         $result= Tour::where('id_tour', $input['id']);
@@ -45,5 +46,10 @@ class TourController extends Controller
 
         if($status) return redirect('admin/tour')->with('success', 'Data tour berhasil dihapus');
         else return redirect('admin/tour')->with('error', 'Data tour gagal dihapus');
+    }
+
+    public function detail($id){
+        $data['result'] = TourDetail::where('id_tour', $id)->get();
+        return view("admin/tour/detail")->with($data);
     }
 }

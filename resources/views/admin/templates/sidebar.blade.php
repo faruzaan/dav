@@ -21,31 +21,31 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{url("admin/island")}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="far {{ @Str::contains(url()->current(), 'island') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                             <p>Island</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{url("admin/destination")}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="far {{ @Str::contains(url()->current(), 'destination') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                             <p>Destination</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{url("admin/tour")}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="far {{ @Str::contains(url()->current(), 'tour') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                             <p>Tour</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{url("admin/category")}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="far {{ @Str::contains(url()->current(), 'category') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                             <p>Category</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a href="{{url("admin/product")}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="far {{ @Str::contains(url()->current(), 'product') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                             <p>Product</p>
                         </a>
                     </li>

@@ -16,11 +16,11 @@ class DestinationController extends Controller
     }
     public function store(Request $request){
         $input = $request->all();
-        $id = DB::table('tb_product')->orderBy('id_product', 'desc')->first();
+        $id = DB::table('tb_destination')->orderBy('id_destination', 'desc')->first();
         if($id == null){
             $id = 1;
         }else{
-            $id = $id->id_product + 1;
+            $id = $id->id_destination + 1;
         }
         if($request->hasFile('foto')){
             $filename = $id . "." . $request->file('foto')->getClientOriginalExtension();

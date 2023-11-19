@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/island/{id}/delete', [IslandController::class, 'destroy']);
     //tour
     Route::get('/admin/tour', [TourController::class, 'index']);
+    Route::get('/admin/tour/{id}', [TourController::class, 'detail']);
     Route::post('/admin/tour', [TourController::class, 'store']);
     Route::get('/admin/tour/getTour', [TourController::class, 'getTour']);
     Route::patch('/admin/tour/edit', [TourController::class, 'edit']);
