@@ -19,6 +19,6 @@ class TourDetail extends Model
         return $this->hasOne('App\Models\Tour', 'id_tour', 'id_tour');
     }
     public function Destination(){
-        return $this->hasMany('App\Models\Destination', 'id_destination', 'id_destination');
+        return $this->hasOne('App\Models\Destination', 'id_destination', 'id_destination');
     }
 }

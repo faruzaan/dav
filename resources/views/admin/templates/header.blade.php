@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{asset('assets')}}/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets')}}/admin/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{asset('assets')}}/admin/plugins/toastr/toastr.min.css">
   @stack("style")
 </head>
 <body class="hold-transition sidebar-mini">
@@ -48,6 +49,7 @@
 <script src="{{asset('assets')}}/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('assets')}}/admin/dist/js/adminlte.min.js"></script>
+<script src="{{asset('assets')}}/admin/plugins/toastr/toastr.min.js"></script>
 @stack('script')
 </body>
 </html>

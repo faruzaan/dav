@@ -12,10 +12,9 @@ class Destination extends Model
     protected $table = 'tb_destination';
 
     protected $fillable = [
-        'id_destination', 'nama_destination', 'id_island', 'foto'
+        'nama_destination', 'foto', 'maps'
     ];
-
-    public function island(){
-        return $this->hasOne('App\Models\Island', 'id_island', 'id_island');
+    public function Detail(){
+        return $this->hasMany('\App\Models\DestinationDetail', 'id_destination', 'id_destination');
     }
 }

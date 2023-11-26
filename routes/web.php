@@ -1,6 +1,6 @@
 <?php
-use App\Http\Controllers\IslandController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\DestinationDetailController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -19,10 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 Route::get('/', [PublicController::class, 'index']);
+Route::get('/pages/about', [PublicController::class, 'about']);
+
+Route::get('/destination', [PublicController::class, 'destination']);
+Route::get('/destination/{id}', [PublicController::class, 'destinationDetail']);
+Route::get('/tour', [PublicController::class, 'tour']);
+Route::get('/tour/{id}', [PublicController::class, 'tourDetail']);
 
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
@@ -32,21 +35,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    //destintation
+    //destintation detail
+    Route::get('/admin/destinationDetail', [DestinationDetailController::class, 'index']);
+    Route::post('/admin/destinationDetail', [DestinationDetailController::class, 'store']);
+    Route::get('/admin/destinationDetail/getDestinationDetail', [DestinationDetailController::class, 'getDestinationDetail']);
+    Route::patch('/admin/destinationDetail/edit', [DestinationDetailController::class, 'edit']);
+    Route::delete('/admin/destinationDetail/{id}/delete', [DestinationDetailController::class, 'destroy']);
+    //destination
     Route::get('/admin/destination', [DestinationController::class, 'index']);
     Route::post('/admin/destination', [DestinationController::class, 'store']);
     Route::get('/admin/destination/getDestination', [DestinationController::class, 'getDestination']);
     Route::patch('/admin/destination/edit', [DestinationController::class, 'edit']);
     Route::delete('/admin/destination/{id}/delete', [DestinationController::class, 'destroy']);
-    //island
-    Route::get('/admin/island', [IslandController::class, 'index']);
-    Route::post('/admin/island', [IslandController::class, 'store']);
-    Route::get('/admin/island/getIsland', [IslandController::class, 'getIsland']);
-    Route::patch('/admin/island/edit', [IslandController::class, 'edit']);
-    Route::delete('/admin/island/{id}/delete', [IslandController::class, 'destroy']);
     //tour
     Route::get('/admin/tour', [TourController::class, 'index']);
-    Route::get('/admin/tour/{id}', [TourController::class, 'detail']);
+    // Route::get('/admin/tour/{id}', [TourController::class, 'detail']);
     Route::post('/admin/tour', [TourController::class, 'store']);
     Route::get('/admin/tour/getTour', [TourController::class, 'getTour']);
     Route::patch('/admin/tour/edit', [TourController::class, 'edit']);

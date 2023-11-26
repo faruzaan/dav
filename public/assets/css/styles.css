@@ -754,6 +754,13 @@ body {
   margin-top: -9px;
   margin-left: -9px;
 }
+.header__top .socials .a.whatsapp:before {
+  background-image: url(../img/whatsapp.svg);
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  margin-left: -9px;
+}
 .header__top .socials .a.pinterest:before {
   background-image: url(../img/pinterest.svg);
   width: 14px;
@@ -1329,17 +1336,7 @@ body {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-.search_tour .search_tour_form .fields__block .fields .field .field_wrap.calendar_field:before {
-  width: 20px;
-  height: 20px;
-  background: url(../img/calendar.svg) center center no-repeat;
-  background-size: contain;
-  position: absolute;
-  content: '';
-  right: 15px;
-  top: 50%;
-  margin-top: -10px;
-}
+
 .search_tour .search_tour_form .fields__block .fields .field .field_wrap.calendar_field .calendar {
   font-size: 15px;
   font-weight: 500;

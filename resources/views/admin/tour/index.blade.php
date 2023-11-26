@@ -55,8 +55,8 @@
                         <td>1</td>
                         <td>1</td>
                         <td>
-                          <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_island }}">Edit</button>
-                          <form action="{{url("admin/island/$row->id_island/delete")}}" method="POST" style="display: inline;">
+                          <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_tour }}">Edit</button>
+                          <form action="{{url("admin/tour/$row->id_tour/delete")}}" method="POST" style="display: inline;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <button href="" class="btn btn-danger">Delete</button>
@@ -88,12 +88,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{{url('admin/island')}}">
+                <form method="POST" action="{{url('admin/tour')}}">
                     {{ csrf_field() }}
                 <div class="modal-body">
                         <div class="form-group">
                             <label for="island">Tour</label>
-                            <input type="text" class="form-control" id="island" name="nama_island" placeholder="Enter island">
+                            <input type="text" class="form-control" id="tour" name="nama_tour" placeholder="Enter Tour">
                         </div>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -116,14 +116,14 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <form method="POST" action="{{url('admin/island/edit')}}">
+                <form method="POST" action="{{url('admin/tour/edit')}}">
                 {{ csrf_field() }}
                 {{ method_field('patch') }}
                 <div class="modal-body">
                   <div class="form-group">
                       <label for="island">Tour</label>
-                      <input type="hidden" id="id_island" name="id" value="">
-                      <input type="text" class="form-control" id="edit_island" name="nama_island" value="">
+                      <input type="hidden" id="id_tour" name="id" value="">
+                      <input type="text" class="form-control" id="edit_tour" name="nama_tour" value="">
                   </div>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -159,8 +159,8 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 
-  $("#edit_island").on('change', function(){
-    if($("#edit_island").val() == null){
+  $("#edit_tour").on('change', function(){
+    if($("#edit_tour").val() == null){
       $("#submit_edit").prop("disabled", true);
     }else{
       $("#submit_edit").prop("disabled", false);
@@ -168,17 +168,16 @@
   });
 
   $(".edit").on("click", function(){
-    // console.log($(this).attr("data-id"))
     $.ajax({
         type: 'GET',
-        url: '/admin/island/getIsland',
+        url: '/admin/tour/getTour',
         data: {
             data: $(this).attr("data-id")
         },
         success: function (response) {
-          console.log(response)
-          $("#edit_island").val(response[0].nama_island)
-          $("#id_island").val(response[0].id_island)
+            console.log(response)
+          $("#edit_tour").val(response[0].nama_tour)
+          $("#id_tour").val(response[0].id_tour)
             // $('#message').text(response.message);
         },
         error: function (error) {

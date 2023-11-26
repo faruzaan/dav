@@ -20,15 +20,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{url("admin/island")}}" class="nav-link">
-                            <i class="far {{ @Str::contains(url()->current(), 'island') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
-                            <p>Island</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{url("admin/destination")}}" class="nav-link">
                             <i class="far {{ @Str::contains(url()->current(), 'destination') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                             <p>Destination</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url("admin/destinationDetail")}}" class="nav-link">
+                            <i class="far {{ @Str::contains(url()->current(), 'destinationDetail') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                            <p>Destination Detail</p>
                         </a>
                     </li>
                     <li class="nav-item">
