@@ -49,8 +49,9 @@ class TourController extends Controller
         else return redirect('admin/tour')->with('error', 'Data tour gagal dihapus');
     }
 
-    // public function detail($id){
-    //     $data['result'] = TourDetail::where('id_tour', $id)->get();
-    //     return view("admin/tour/detail")->with($data);
-    // }
+    public function detail($id){
+        $data['result'] = Tour::where('id_tour', $id)->first();
+        $data['tourDetails'] = TourDetail::all();
+        return view("admin/tour/detail")->with($data);
+    }
 }

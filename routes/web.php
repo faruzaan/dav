@@ -47,9 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/destination/getDestination', [DestinationController::class, 'getDestination']);
     Route::patch('/admin/destination/edit', [DestinationController::class, 'edit']);
     Route::delete('/admin/destination/{id}/delete', [DestinationController::class, 'destroy']);
+
+    Route::get('/admin/destination/{id}', [DestinationController::class, 'detail']);
     //tour
     Route::get('/admin/tour', [TourController::class, 'index']);
-    // Route::get('/admin/tour/{id}', [TourController::class, 'detail']);
+    Route::get('/admin/tour/{id}', [TourController::class, 'detail']);
     Route::post('/admin/tour', [TourController::class, 'store']);
     Route::get('/admin/tour/getTour', [TourController::class, 'getTour']);
     Route::patch('/admin/tour/edit', [TourController::class, 'edit']);

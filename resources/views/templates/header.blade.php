@@ -110,7 +110,7 @@
                        <div class="footer_top_menu">
                            <ul>
                                 <li><a href="{{url('/')}}" class="{{ url()->current() == url('/') ? 'active' : '' }}">Home</a></li>
-                                <li><a href="{{url('/pages')}}" class="{{ @Str::contains(url()->current(), '/pages') ? 'active' : '' }}">Pages</a></li>
+                                <li><a href="#" class="{{ @Str::contains(url()->current(), '/pages') ? 'active' : '' }}">Pages</a></li>
                                 <li><a href="{{url('/destination')}}" class="{{ @Str::contains(url()->current(), '/destination') ? 'active' : '' }}">Destination</a></li>
                                 <li><a href="{{url('/tour')}}" class="{{ @Str::contains(url()->current(), '/tour') ? 'active' : '' }}">Tour</a></li>
                                 <li><a href="{{url('/boat')}}" class="{{ @Str::contains(url()->current(), '/boat') ? 'active' : '' }}">Boat</a></li>

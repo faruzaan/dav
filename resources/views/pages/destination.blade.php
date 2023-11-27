@@ -20,11 +20,11 @@
                        <a href="tour-list.html" class="slide_item_img">
                            <div class="sq_parent">
                                <div class="sq_wrap">
-                                   <div class="sq_content" style="background-image: url(img/prevnap2.jpg)"></div>
+                                   <div class="sq_content" style="background-image: url({{asset('uploads/'.$destination->foto)}})"></div>
                                </div>
                             </div>
                        </a>
-                       <a href="single.html" class="slide_item_content">
+                       <a href="{{url('/destination/'.$destination->id_destination)}}" class="slide_item_content">
                            <div class="flag">
                                <img src="img/egypt-3.svg" alt="">
                            </div>
@@ -32,13 +32,13 @@
                                {{ $destination->nama_destination }}
                            </h3>
                            <p class="slide_text">
-                               Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                               {{ substr(str_replace('</p>','',str_replace('<p>','',$destination->header)), 0, 200)  }}...
                            </p>
                        </a>
                        <div class="slide_footer">
-                           <div class="hours">15 tours</div>
+                           <div class="hours">{{ $destination->Tour->count() }} tours</div>
                            <div class="tours_link">
-                               <a href="tour-list.html">View all tours</a>
+                               <a href="{{url('/tour')}}">View all tours</a>
                            </div>
                        </div>
                    </div>
@@ -47,14 +47,6 @@
 
                 <div class="pagination">
                     {{ $destinations->links('vendor.pagination.default') }}
-                    {{-- <ul>
-                        <li class="prev"><a href="#"></a></li>
-                        <li class="current"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li class="next"><a href="#"></a></li>
-                    </ul> --}}
                 </div>
             </div>
         </div>

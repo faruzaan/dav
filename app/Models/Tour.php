@@ -12,6 +12,9 @@ class Tour extends Model
     protected $table = 'tb_tour';
 
     protected $fillable = [
-        'nama_tour', 'duration'
+        'nama_tour', 'duration', 'desc', 'desc_header', 'tour_detail', 'include', 'header1', 'header2', 'price_usd', 'price_idr', 'foto', 'program', 'content2'
     ];
+    public function Tour(){
+        return $this->hasOne('App\Models\Tour', 'id_tour', 'id_tour');
+    }
 }

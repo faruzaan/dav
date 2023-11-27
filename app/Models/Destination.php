@@ -17,4 +17,7 @@ class Destination extends Model
     public function Detail(){
         return $this->hasMany('\App\Models\DestinationDetail', 'id_destination', 'id_destination');
     }
+    public function Tour(){
+        return $this->hasMany('\App\Models\TourDetail', 'id_destination', 'id_destination');
+    }
 }

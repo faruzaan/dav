@@ -23,7 +23,7 @@ class DestinationDetailController extends Controller
             $id = $id->id_destination + 1;
         }
         if($request->hasFile('foto')){
-            $filename = $id . "." . $request->file('foto')->getClientOriginalExtension();
+            $filename = 'destination' . $id . "." . $request->file('foto')->getClientOriginalExtension();
             $request->file('foto')->storeAs('', $filename);
             $input['foto'] = $filename;
         }

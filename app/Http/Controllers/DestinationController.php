@@ -30,10 +30,17 @@ class DestinationController extends Controller
     public function edit(Request $request){
         $input = $request->all();
 
-        $data['id_destination']             = $input['id'];
-        $data['nama_destination']    = $input['nama_destination'];
+        $data['id_destination']     = $input['id_destination'];
+        $data['nama_destination']   = $input['nama_destination'];
+        $data['header']             = $input['header'];
+        $data['content']            = $input['content'];
+        if($request->hasFile('foto')){
+            $filename = 'destination' . $data['id_destination'] . "." . $request->file('foto')->getClientOriginalExtension();
+            $request->file('foto')->storeAs('', $filename);
+            $data['foto'] = $filename;
+        }
 
-        $result= Destination::where('id_destination', $input['id']);
+        $result= Destination::where('id_destination', $input['id_destination']);
         $status = $result->update($data);
 
         if($status) return redirect('admin/destination')->with('success', 'Data destination '.$input['nama_destination'].' berhasil diubah');
@@ -45,5 +52,9 @@ class DestinationController extends Controller
 
         if($status) return redirect('admin/destination')->with('success', 'Data destination berhasil dihapus');
         else return redirect('admin/destination')->with('error', 'Data destination gagal dihapus');
+    }
+    public function detail($id){
+        $data['result'] = Destination::where('id_destination', $id)->first();
+        return view("admin/destination/detail")->with($data);
     }
 }

@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Island</h1>
+            <h1>Destination</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Island</li>
+              <li class="breadcrumb-item active">Destination</li>
             </ol>
           </div>
         </div>
@@ -30,7 +30,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Island Data</h3>
+                <h3 class="card-title">Destination Data</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -41,7 +41,9 @@
                   <thead>
                   <tr>
                     <th>No</th>
+                    <th>Foto</th>
                     <th>Destination</th>
+                    <th>Tour</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -49,9 +51,11 @@
                     @foreach ($result as $row)
                       <tr>
                         <td>{{ !empty($i) ? ++$i : $i = 1 }}</td>
+                        <td><img src="{{ asset('uploads/'.$row->foto) }}" alt="" width="100px"></td>
                         <td><a href="{{url("admin/destination/$row->id_destination")}}">{{ $row->nama_destination }}</a></td>
+                        <td>{{ $row->Tour->count() }}</td>
                         <td>
-                          <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_destination }}">Edit</button>
+                          {{-- <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_destination }}">Edit</button> --}}
                           <form action="{{url("admin/destination/$row->id_destination/delete")}}" method="POST" style="display: inline;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

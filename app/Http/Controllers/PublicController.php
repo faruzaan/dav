@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Menu;
 use App\Models\System;
 use App\Models\Tour;
+use App\Models\TourDetail;
 
 class PublicController extends Controller
 {
@@ -36,7 +37,7 @@ class PublicController extends Controller
         $data['menus'] = Menu::where('parent_id', null)->get();
         $data['footer_menus'] = Menu::all();
         $data['system'] = System::all();
-        $destinations = Destination::paginate(1);
+        $destinations = Destination::paginate(6);
         return view("pages/destination", compact('destinations'))->with($data);
     }
     public function destinationDetail($id){
@@ -50,13 +51,17 @@ class PublicController extends Controller
         $data['menus'] = Menu::where('parent_id', null)->get();
         $data['footer_menus'] = Menu::all();
         $data['system'] = System::all();
+        $data['tours'] = Tour::paginate(6);
+        $data['latest_tours'] = Tour::orderBy('created_at', 'desc')->limit(4)->get();
+        $data['destinations'] = Destination::limit(10)->get();
         return view("pages/tour")->with($data);
     }
     public function tourDetail($id){
         $data['menus'] = Menu::where('parent_id', null)->get();
         $data['footer_menus'] = Menu::all();
         $data['system'] = System::all();
-        $data['destination'] = Destination::where('id_destination',$id)->first();
+        $data['tour'] = Tour::where('id_tour',$id)->first();
+        $data['tourDetails'] = TourDetail::where('id_tour',$id)->get();
         return view("pages/tourDetail")->with($data);
     }
 }
