@@ -2656,6 +2656,13 @@ body {
     margin-top: -14px;
     margin-left: -14px;
   }
+  .header__bottom .menu .scroll .bottom .socials .links a.whatsapp:before {
+    background-image: url(../img/whatsapp.svg);
+    width: 28px;
+    height: 28px;
+    margin-top: -14px;
+    margin-left: -14px;
+  }
   .header__bottom .menu .scroll .bottom .socials .links a.pinterest:before {
     background-image: url(../img/pinterest.svg);
     width: 24px;

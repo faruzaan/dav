@@ -70,17 +70,17 @@
                                </div>
                                <div class="bottom">
                                    <div class="tel">
-                                       <a href="tel:+11235678910">+1 1235 6789 10</a>
+                                        @foreach (\App\Models\System::where('desc', 'contact')->get() as $contact)
+                                        <a href="tel:{{$contact->value}}">{{$contact->value}}</a><br>
+                                        @endforeach
                                    </div>
                                    <div class="email">
-                                       <a href="mailto:info@hellodigi.ru">info@hellodigi.ru</a>
+                                       <a href="mailto:{{ \App\Models\System::where('desc', 'email')->first()->value }}">{{ \App\Models\System::where('desc', 'email')->first()->value }}</a>
                                    </div>
                                    <div class="socials">
                                        <div class="links">
-                                            <a href="#" class="fb"></a>
                                             <a href="#" class="instagram"></a>
-                                            <a href="#" class="pinterest"></a>
-                                            <a href="#" class="twitter"></a>
+                                            <a href="#" class="whatsapp"></a>
                                         </div>
                                    </div>
                                </div>
@@ -102,9 +102,9 @@
                <div class="wrap">
                    <div class="wrap_float">
                        <div class="footer_head_mobile">
-                           <div class="logo">lavella</div>
+                           <div class="logo">DIABLO BOSS ASIA VENTURE</div>
                            <div class="text">
-                               Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+                               {{-- Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. --}}
                            </div>
                        </div>
                        <div class="footer_top_menu">
@@ -117,10 +117,8 @@
                            </ul>
                        </div>
                        <div class="socials">
-                           <a href="#" class="a facebook"></a>
                            <a href="#" class="a instagram"></a>
-                           <a href="#" class="a pinterest"></a>
-                           <a href="#" class="a twitter"></a>
+                           <a href="#" class="a whatsapp"></a>
                        </div>
                    </div>
                </div>
