@@ -53,7 +53,7 @@ class PublicController extends Controller
         $data['system'] = System::all();
         $data['tours'] = Tour::paginate(6);
         $data['latest_tours'] = Tour::orderBy('created_at', 'desc')->limit(4)->get();
-        $data['destinations'] = Destination::limit(10)->get();
+        $data['destinations'] = Destination::limit(10)->offset(3)->get();
         return view("pages/tour")->with($data);
     }
     public function tourDetail($id){

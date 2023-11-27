@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/tour/getTour', [TourController::class, 'getTour']);
     Route::patch('/admin/tour/edit', [TourController::class, 'edit']);
     Route::delete('/admin/tour/{id}/delete', [TourController::class, 'destroy']);
+    Route::delete('/admin/tourDetail/{id}/delete', [TourController::class, 'destroyDetail']);
+    Route::post('/admin/tour/tourDetails', [TourController::class, 'addDetail']);
     //category
     Route::get('/admin/category', [CategoryController::class, 'index']);
     Route::post('/admin/category', [CategoryController::class, 'store']);

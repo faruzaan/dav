@@ -32,13 +32,16 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form>
+          <form action="{{url('admin/tour/edit')}}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            {{ method_field('patch') }}
+            <input type="hidden" name="id_tour" value="{{$result->id_tour}}">
             <div class="row">
               <div class="col-md-6">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Tour</label>
-                    <input type="text" class="form-control" id="TourName" value="{{ $result->nama_tour }}">
+                    <input type="text" class="form-control" name="nama_tour" id="TourName" value="{{ $result->nama_tour }}">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Destination</label>
@@ -70,7 +73,16 @@
                   </div>
                   <div class="form-group">
                     <label for="" class="control-label">Foto</label>
+                    <img src="{{asset('uploads/'.$result->foto)}}" width="100%" alt="">
                     <input type="file" class="form-control" name="foto">
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="control-label">USD</label>
+                    <input type="text" class="form-control" name="price_usd" value="{{ $result->price_usd }}">
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="control-label">IDR</label>
+                    <input type="text" class="form-control" name="price_idr" value="{{ $result->price_idr }}">
                   </div>
                   <div class="form-group">
                     <label for="" class="control-label">Header 1</label>
@@ -104,7 +116,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <button href="" class="btn btn-primary">Add Destination</button>
+            <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#modal-lg">Add Destination</button>
             <table id="example1" class="table table-bordered table-striped mt-3">
               <thead>
               <tr>
@@ -119,8 +131,7 @@
                     <td>{{ !empty($i) ? ++$i : $i = 1 }}</td>
                     <td><a href="{{url("/admin/destination/$tourDetail->id_destination")}}">{{ $tourDetail->Destination->nama_destination }}</a></td>
                     <td>
-                      <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $tourDetail->id_island }}">Edit</button>
-                      <form action="{{url("admin/island/$tourDetail->id_island/delete")}}" method="POST" style="display: inline;">
+                      <form action="{{url("admin/tourDetail/$tourDetail->id_detail_tour/delete")}}" method="POST" style="display: inline;">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <button href="" class="btn btn-danger">Delete</button>
@@ -136,6 +147,39 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Tour</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{url('admin/tour/tourDetails')}}">
+                {{ csrf_field() }}
+                <input type="hidden" name="id_tour" value="{{$result->id_tour}}">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="island">Destination</label>
+                    <select class="form-control select2" name='id_destination' id="id_category_edit">
+                        @foreach (\App\Models\Destination::all() as $destination)
+                          <option value="{{ $destination->id_destination }}">{{ $destination->nama_destination }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 @push('script')
     <script src="{{asset('assets')}}/admin/plugins/summernote/summernote-bs4.min.js"></script>

@@ -23,6 +23,13 @@ class TourController extends Controller
         if($status) return redirect('admin/tour')->with('success', 'Data tour '.$input['nama_tour'].' berhasil ditambahkan');
         else return redirect('admin/tour')->with('error', 'Data tour '.$input['nama_tour'].' gagal ditambahkan');
     }
+    public function addDetail(Request $request){
+        $input = $request->all();
+        $status = TourDetail::create($input);
+
+        if($status) return redirect('admin/tour/'.$input['id_tour'])->with('success', 'Data tour  berhasil ditambahkan');
+        else return redirect('admin/tour/'.$input['id_tour'])->with('error', 'Data tour gagal ditambahkan');
+    }
     public function getTour(Request $request)
     {
         // return json('test');
@@ -32,10 +39,24 @@ class TourController extends Controller
     public function edit(Request $request){
         $input = $request->all();
 
-        $data['id_tour']      = $input['id'];
+        $data['id_tour']      = $input['id_tour'];
         $data['nama_tour']    = $input['nama_tour'];
+        $data['duration']    = $input['duration'];
+        $data['desc']    = $input['desc'];
+        $data['desc_header']    = $input['desc_header'];
+        $data['tour_detail']    = $input['tour_detail'];
+        $data['header1']    = $input['header1'];
+        $data['header2']    = $input['header2'];
+        $data['price_usd']    = $input['price_usd'];
+        $data['price_idr']    = $input['price_idr'];
+        $data['content2']    = $input['content2'];
+        if($request->hasFile('foto')){
+            $filename = 'tour' . $data['id_tour'] . "." . $request->file('foto')->getClientOriginalExtension();
+            $request->file('foto')->storeAs('', $filename);
+            $data['foto'] = $filename;
+        }
 
-        $result= Tour::where('id_tour', $input['id']);
+        $result= Tour::where('id_tour', $input['id_tour']);
         $status = $result->update($data);
 
         if($status) return redirect('admin/tour')->with('success', 'Data tour '.$input['nama_tour'].' berhasil diubah');
@@ -51,7 +72,15 @@ class TourController extends Controller
 
     public function detail($id){
         $data['result'] = Tour::where('id_tour', $id)->first();
-        $data['tourDetails'] = TourDetail::all();
+        $data['tourDetails'] = TourDetail::where('id_tour', $id)->get();
         return view("admin/tour/detail")->with($data);
+    }
+    public function destroyDetail(Request $request, $id){
+        $result = TourDetail::where('id_detail_tour', $id)->first();
+        $idTour = $result->id_tour;
+        $status = $result->delete();
+
+        if($status) return redirect('admin/tour/'.$idTour)->with('success', 'Data tour berhasil dihapus');
+        else return redirect('admin/tour/'.$idTour)->with('error', 'Data tour gagal dihapus');
     }
 }

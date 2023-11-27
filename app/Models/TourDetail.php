@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TourDetail extends Model
 {
-    public $primaryKey = 'id_tour';
+    public $primaryKey = 'id_detail_tour';
 
     protected $table = 'tb_tour_detail';
 

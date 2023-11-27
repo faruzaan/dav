@@ -87,7 +87,7 @@
            <div class="wrap">
                <div class="wrap_float">
                     @foreach ($destinations as $destination)
-                    <a href="single.html" class="item">
+                    <a href="{{url('/destination/'.$destination->id_destination)}}" class="item">
                         <div class="sq_parent">
                             <div class="sq_wrap">
                                 <div class="sq_content image" style="background-image: url({{asset('uploads/'.$destination->foto)}})"></div>
@@ -109,7 +109,7 @@
                     @foreach ($tours as $tour)
                     <a href="{{url('/tour/'.$tour->id_tour)}}" class="slider_item" style="background-image: url({{asset('uploads/'.$tour->foto)}})">
                         <div class="slider_item__content">
-                            <div class="rating">
+                            {{-- <div class="rating">
                                 <div class="stars">
                                     <div class="star active"></div>
                                     <div class="star active"></div>
@@ -120,7 +120,7 @@
                                 <div class="reviews_count">
                                     (2 Reviews)
                                 </div>
-                            </div>
+                            </div> --}}
                             <h3 class="title">
                                 {{$tour->nama_tour}} | ${{$tour->price_usd}}
                             </h3>
