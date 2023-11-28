@@ -112,6 +112,84 @@
       <div class="col-md-12">
         <div class="card card-primary">
           <div class="card-header">
+            <h3 class="card-title">Itenary</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#modal-itenary">Add Itenary</button>
+            <table id="example1" class="table table-bordered table-striped mt-3">
+              <thead>
+              <tr>
+                <th>No</th>
+                <th>Description</th>
+                <th>Details</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+                @if ($result->program != 0 || $result->program != null)
+                    @foreach ($programs as $program)
+                    <tr>
+                        <td>{{ !empty($i) ? ++$i : $i = 1 }}</td>
+                        <td>{{$program->desc}}</td>
+                        <td>
+                            <div>
+                                <button type="button" class="btn btn-success mb-2 btn-add-itenary-detail" data-toggle="modal" data-target="#modal-desc" data-id="{{$program->id_program}}">Add Description</button>
+                                <table id="example2" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Foto</th>
+                                            <th>Description</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if ($program->Details->count() != 0)
+                                            @foreach (\App\Models\ProgramDetail::where('id_program',$program->id_program)->get() as $detail)
+                                                <tr>
+                                                    <td><img src="{{asset('uploads/'.$detail->foto)}}" alt="" width="50px" class="img-fluid"></td>
+                                                    <td>{{$detail->desc}}</td>
+                                                    <td>
+                                                        <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $detail->id_detail_program }}">Edit</button>
+                                                        <form action="{{url("admin/programDetail/$detail->id_detail_program/delete")}}" method="POST" style="display: inline;">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('DELETE') }}
+                                                            <button href="" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </td>
+                        <td>
+                        <button class="btn btn-warning edit btn-edit-itenary" data-toggle="modal" data-target="#modal-edit-itenary" data-id="{{ $program->id_program }}" data-desc="{{ $program->id_program }}">Edit</button>
+                        <form action="{{url("admin/program/$program->id_program/delete")}}" method="POST" style="display: inline;">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button href="" class="btn btn-danger">Delete</button>
+                        </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                @endif
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
             <h3 class="card-title">Destination</h3>
           </div>
           <!-- /.card-header -->
@@ -180,16 +258,155 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<div class="modal fade" id="modal-itenary">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Itenary</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{url('admin/program/add')}}">
+            {{ csrf_field() }}
+            <input type="hidden" name="id_tour" value="{{$result->id_tour}}">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="island">Itenary</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="desc">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-desc">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Tour</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{url('admin/tour/tourDetails')}}">
+                {{ csrf_field() }}
+            <input type="hidden" name="id_program" id="id_program">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="island">Description</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="desc">
+                </div>
+                <div class="form-group">
+                    <label for="customFile">Foto</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile" name="foto">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-edit-itenary">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Itenary</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{url('admin/program/add')}}">
+            {{ csrf_field() }}
+            {{ method_field('patch') }}
+            <input type="hidden" name="id_program" id="id_program_edit">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="island">Itenary</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="desc">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-edit-desc">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Tour</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{url('admin/tour/tourDetails')}}">
+            {{ csrf_field() }}
+            {{ method_field('patch') }}
+            <input type="hidden" name="id_program" id="id_program_detail_edit">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="island">Description</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="desc">
+                </div>
+                <div class="form-group">
+                    <label for="customFile">Foto</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile" name="foto">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 @push('script')
     <script src="{{asset('assets')}}/admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="{{asset('assets')}}/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script>
-      $('#desc').summernote()
-      $('#tour_detail').summernote()
-      $('#header1').summernote()
-      $('#content1').summernote()
-      $('#header2').summernote()
-      $('#content2').summernote()
-      $('#desc_header').summernote()
+
+    $(function () {
+        bsCustomFileInput.init();
+    });
+    $('.btn-add-itenary-detail').click(function(){
+        $("#id_program").val($(this).attr("data-id"));
+    })
+    $('.btn-edit-itenary').click(function(){
+
+    })
+    $('#desc').summernote()
+    $('#tour_detail').summernote()
+    $('#header1').summernote()
+    $('#content1').summernote()
+    $('#header2').summernote()
+    $('#content2').summernote()
+    $('#desc_header').summernote()
     </script>
 @endpush

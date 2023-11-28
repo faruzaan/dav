@@ -53,11 +53,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/tour', [TourController::class, 'index']);
     Route::get('/admin/tour/{id}', [TourController::class, 'detail']);
     Route::post('/admin/tour', [TourController::class, 'store']);
-    Route::get('/admin/tour/getTour', [TourController::class, 'getTour']);
     Route::patch('/admin/tour/edit', [TourController::class, 'edit']);
     Route::delete('/admin/tour/{id}/delete', [TourController::class, 'destroy']);
+
     Route::delete('/admin/tourDetail/{id}/delete', [TourController::class, 'destroyDetail']);
     Route::post('/admin/tour/tourDetails', [TourController::class, 'addDetail']);
+
+    Route::post('/admin/program/add', [TourController::class, 'addProgram']);
+    Route::get('/admin/tour/getProgram', [TourController::class, 'getProgram']);
+    Route::delete('/admin/program/{id}/delete', [TourController::class, 'destroyProgram']);
+
+
     //category
     Route::get('/admin/category', [CategoryController::class, 'index']);
     Route::post('/admin/category', [CategoryController::class, 'store']);

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tour;
 use App\Models\TourDetail;
+use App\Models\Program;
+use App\Models\ProgramDetail;
 
 class TourController extends Controller
 {
@@ -30,12 +32,7 @@ class TourController extends Controller
         if($status) return redirect('admin/tour/'.$input['id_tour'])->with('success', 'Data tour  berhasil ditambahkan');
         else return redirect('admin/tour/'.$input['id_tour'])->with('error', 'Data tour gagal ditambahkan');
     }
-    public function getTour(Request $request)
-    {
-        // return json('test');
-        $data = Tour::where('id_tour', $request->input('data'))->get();
-        return response()->json($data);
-    }
+
     public function edit(Request $request){
         $input = $request->all();
 
@@ -73,6 +70,7 @@ class TourController extends Controller
     public function detail($id){
         $data['result'] = Tour::where('id_tour', $id)->first();
         $data['tourDetails'] = TourDetail::where('id_tour', $id)->get();
+        $data['programs'] = Program::where('id_tour', $id)->get();
         return view("admin/tour/detail")->with($data);
     }
     public function destroyDetail(Request $request, $id){
@@ -82,5 +80,26 @@ class TourController extends Controller
 
         if($status) return redirect('admin/tour/'.$idTour)->with('success', 'Data tour berhasil dihapus');
         else return redirect('admin/tour/'.$idTour)->with('error', 'Data tour gagal dihapus');
+    }
+    public function addProgram(Request $request)
+    {
+        $input = $request->all();
+        $status = Program::create($input);
+
+        if($status) return redirect('admin/tour/'.$input['id_tour']);
+        else return redirect('admin/tour');
+    }
+    public function destroyProgram(Request $request, $id){
+        $result = Program::where('id_program', $id)->first();
+        $idProgram = $result->id_tour;
+        $status = $result->delete();
+
+        if($status) return redirect('admin/tour/'.$idProgram)->with('success', 'Data tour berhasil dihapus');
+        else return redirect('admin/tour/'.$idProgram)->with('error', 'Data tour gagal dihapus');
+    }
+    public function getProgram(Request $request)
+    {
+        $data = Program::where('id_tour', $request->input('data'))->get();
+        return response()->json($data);
     }
 }
