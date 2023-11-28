@@ -65,47 +65,21 @@
                             <div class="label">Destination</div>
                             <div class="field_wrap select_field">
                                 <select name="tour-activity">
-                                <option value="">Any</option>
-                                <option value="city-tours">City Tours</option>
-                                <option value="cultural-thematic-tours">Cultural &amp; Thematic Tours</option>
-                                <option value="family-friendly-tours">Family Friendly Tours</option>
-                                <option value="holiday-seasonal-tours">Holiday &amp; Seasonal Tours</option>
-                                <option value="indulgence-luxury-tours">Indulgence &amp; Luxury Tours</option>
-                                <option value="outdoor-activites">Outdoor Activites</option>
-                                <option value="relaxation-tours">Relaxation Tours</option>
-                                <option value="wild-adventure-tours">Wild &amp; Adventure Tours</option>
-                            </select>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="label">Tour List</div>
-                            <div class="field_wrap select_field">
-                                <select name="tour-activity">
                                     <option value="">Any</option>
-                                    <option value="city-tours">City Tours</option>
-                                    <option value="cultural-thematic-tours">Cultural &amp; Thematic Tours</option>
-                                    <option value="family-friendly-tours">Family Friendly Tours</option>
-                                    <option value="holiday-seasonal-tours">Holiday &amp; Seasonal Tours</option>
-                                    <option value="indulgence-luxury-tours">Indulgence &amp; Luxury Tours</option>
-                                    <option value="outdoor-activites">Outdoor Activites</option>
-                                    <option value="relaxation-tours">Relaxation Tours</option>
-                                    <option value="wild-adventure-tours">Wild &amp; Adventure Tours</option>
+                                    @foreach (\App\Models\Destination::all() as $destination)
+                                    <option value="">{{$destination->nama_destination}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="field">
-                            <div class="label">Date</div>
+                            <div class="label">Tour List</div>
                             <div class="field_wrap select_field calendar_field">
                                 <select name="tour-activity">
                                     <option value="">Any</option>
-                                    <option value="city-tours">City Tours</option>
-                                    <option value="cultural-thematic-tours">Cultural &amp; Thematic Tours</option>
-                                    <option value="family-friendly-tours">Family Friendly Tours</option>
-                                    <option value="holiday-seasonal-tours">Holiday &amp; Seasonal Tours</option>
-                                    <option value="indulgence-luxury-tours">Indulgence &amp; Luxury Tours</option>
-                                    <option value="outdoor-activites">Outdoor Activites</option>
-                                    <option value="relaxation-tours">Relaxation Tours</option>
-                                    <option value="wild-adventure-tours">Wild &amp; Adventure Tours</option>
+                                    @foreach (\App\Models\Tour::all() as $tour)
+                                    <option value="">{{$tour->nama_tour}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -175,11 +149,11 @@
                 <div class="top_part_left">
                     {{-- <p class="section_subtitle">POPULARLY</p> --}}
                     <h2 class="section_title">
-                        Destination
+                        Tours
                     </h2>
                 </div>
                 <div class="top_part_right">
-                    <a href="tour-list.html" class="btn">
+                    <a href="{{url('/tour')}}" class="btn">
                         <span>View all tours</span>
                     </a>
                     <div class="controls" id="most_popular__arrows">
@@ -190,16 +164,21 @@
             </div>
             <div class="most_popular__section__slider" id="most_popular__slider">
                 @foreach ($tours as $tour)
-                <a href="single.html" class="slider_item" style="background-image: url({{asset('uploads/'.$tour->foto)}})">
+                <a href="{{url('tour/'.$tour->id_tour)}}" class="slider_item" style="background-image: url({{asset('uploads/'.$tour->foto)}})">
                     <div class="slider_item__content">
                         <div class="rating">
                         </div>
                         <h3 class="title">
                             {{$tour->nama_tour}} {{ $tour->price_usd != null ? ' | $'.$tour->price_usd : '' }}
                         </h3>
+                        @if ($tour->desc[0] == '<')
+                        {!! str_replace('<p>','<p class="description">',$tour->desc) !!}
+                        @else
                         <p class="description">
-                        {{$tour->desc}}
+                            {{$tour->desc}}
                         </p>
+                        @endif
+
                     </div>
                 </a>
                 @endforeach

@@ -8100,7 +8100,7 @@ body {
   color: #FF7F00;
   display: block;
   float: left;
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   left: 0;
 }

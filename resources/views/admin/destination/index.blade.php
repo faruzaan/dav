@@ -43,6 +43,7 @@
                     <th>No</th>
                     <th>Foto</th>
                     <th>Destination</th>
+                    <th>Detail</th>
                     <th>Tour</th>
                     <th>Action</th>
                   </tr>
@@ -52,10 +53,12 @@
                       <tr>
                         <td>{{ !empty($i) ? ++$i : $i = 1 }}</td>
                         <td><img src="{{ asset('uploads/'.$row->foto) }}" alt="" width="100px"></td>
-                        <td><a href="{{url("admin/destination/$row->id_destination")}}">{{ $row->nama_destination }}</a></td>
+                        <td><a href="{{url('/admin/destination/'.$row->id_destination)}}">{{ $row->nama_destination }}</a></td>
+                        <td>{{ $row->Detail->count() }}</td>
                         <td>{{ $row->Tour->count() }}</td>
                         <td>
                           {{-- <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_destination }}">Edit</button> --}}
+                          <a href="{{url('/admin/destination/'.$row->id_destination)}}" class="btn btn-warning edit">Edit</a>
                           <form action="{{url("admin/destination/$row->id_destination/delete")}}" method="POST" style="display: inline;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

@@ -44,7 +44,9 @@
                   <thead>
                   <tr>
                     <th>No</th>
+                    <th>Foto</th>
                     <th>Destination</th>
+                    <th>Destination Detail</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -52,10 +54,11 @@
                     @foreach ($result as $row)
                       <tr>
                         <td>{{ !empty($i) ? ++$i : $i = 1 }}</td>
-                        <td>{{ $row->nama_destination }}</td>
+                        <td><a href="{{url('destination/'. ($row->id_destination == null ? '' : $row->id_destination) )}}">{{ $row->Destination == null ? '' : $row->Destination->nama_destination }}</a></td>
+                        <td><a href="{{url('/admin/destinationDetail/'.$row->id_destination_detail)}}">{{ $row->nama_destination }}</a></td>
                         <td>
-                          <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_destination }}">Edit</button>
-                          <form action="{{url("admin/destination/$row->id_destination/delete")}}" method="POST" style="display: inline;">
+                          <a href="{{url('admin/destinationDetail/'.$row->id_destination_detail)}}" class="btn btn-warning edit">Edit</a>
+                          <form action="{{url("admin/destinationDetail/$row->id_destination_detail/delete")}}" method="POST" style="display: inline;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <button href="" class="btn btn-danger">Delete</button>

@@ -32,32 +32,33 @@ class DestinationDetailController extends Controller
         if($status) return redirect('admin/destinationDetail')->with('success', 'Data destination '.$input['nama_destination'].' berhasil ditambahkan');
         else return redirect('admin/destinationDetail')->with('error', 'Data destination '.$input->nama_island.' gagal ditambahkan');
     }
-    public function getDestination(Request $request)
-    {
-        $data = DestinationDetail::where('id_destination', $request->input('data'))->get();
-        return response()->json($data);
-    }
     public function edit(Request $request){
         $input = $request->all();
         if($request->hasFile('foto')){
-            $filename = $input['id_destination'] . "." . $request->file('foto')->getClientOriginalExtension();
+            $filename = 'DestinationDetail' . $input['id_destination_detail'] . "." . $request->file('foto')->getClientOriginalExtension();
             $request->file('foto')->storeAs('', $filename);
             $data['foto'] = $filename;
         }
-        $data['id_destination']      = $input['id_destination'];
-        $data['nama_destination']    = $input['nama_destination'];
+        $data['id_destination']         = $input['id_destination'];
+        $data['nama_destination']       = $input['nama_destination'];
+        $data['header']                 = $input['header'];
+        $data['content']                = $input['content'];
 
-        $result= DestinationDetail::where('id_destination', $input['id_destination']);
+        $result= DestinationDetail::where('id_destination_detail', $input['id_destination_detail']);
         $status = $result->update($data);
 
         if($status) return redirect('admin/destinationDetail')->with('success', 'Data destination '.$input['nama_destination'].' berhasil diubah');
         else return redirect('admin/destinationDetail')->with('error', 'Data destination '.$input['nama_destination'].' gagal diubah');
     }
     public function destroy(Request $request, $id){
-        $result = DestinationDetail::where('id_destination', $id)->first();
+        $result = DestinationDetail::where('id_destination_detail', $id)->first();
         $status = $result->delete();
 
         if($status) return redirect('admin/destinationDetail')->with('success', 'Data destination berhasil dihapus');
         else return redirect('admin/destinationDetail')->with('error', 'Data destination gagal dihapus');
+    }
+    public function detail($id){
+        $data['result'] = DestinationDetail::where('id_destination_detail', $id)->first();
+        return view("admin/destinationDetail/detail")->with($data);
     }
 }

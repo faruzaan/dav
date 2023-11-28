@@ -1,12 +1,5 @@
 @extends('templates/header')
 @section('contents')
-<div class="breadcrumbs">
-    <div class="wrap">
-        <div class="wrap_float">
-            <a href="#" class="current">Tour</a>
-        </div>
-    </div>
-</div>
 <div class="page_head" style="background-image: url(img/header5.jpg)">
     <div class="wrap">
         <div class="wrap_float">

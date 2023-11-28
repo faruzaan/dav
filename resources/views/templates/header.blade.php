@@ -27,7 +27,10 @@
                <div class="wrap_float">
                    <div class="header__top">
                        <div class="tel">
-                            <a href="tel:+62 823 3990 7214">+6282339907214</a>
+                            {{-- <a href="tel:+62 823 3990 7214">+6282339907214</a> --}}
+                            @foreach (\App\Models\System::where('desc', 'contact')->get() as $contact)
+                            <a href="https://wa.me\{{$contact->value}}" target="_blank">{{$contact->value}}</a><br>
+                            @endforeach
                        </div>
                        <div class="email">
                             @foreach (\App\Models\System::where('desc','email')->get() as $contact)
@@ -36,7 +39,7 @@
 
                        </div>
                        <div class="socials">
-                           <a href="#" class="a instagram"></a>
+                           <a href="https://www.instagram.com/diabloboss.asia/" target="_blank" class="a instagram"></a>
                            <a href="#" class="a whatsapp"></a>
                        </div>
                    </div>
@@ -48,30 +51,61 @@
                                <a class="current">Home</a>
                                <div class="scroll_wrap">
                                    <ul>
-                                        @foreach ($menus as $menu)
-                                            @if ($menu->url != '#')
-                                                <li><a href="{{url(htmlspecialchars($menu->url))}}" class="{{ @Str::contains(url()->current(), $menu->url) ? 'active' : '' }}">{{ $menu->menu }}</a></li>
-                                            @else
-                                                <li class="dropdown_li">
-                                                    <a href="#" class="{{ @Str::contains(url()->current(), $menu->url) ? 'active' : '' }}">
-                                                        <span>{{ $menu->menu }}</span>
-                                                    </a>
-                                                    <div class="dropdown-menu">
-                                                        <ul>
-                                                            @foreach (\App\Models\Menu::where('parent_id', $menu->id)->get() as $menuChild)
-                                                                <li><a href="{{$menuChild->url}}">{{ $menuChild->menu }}</a></li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            @endif
-                                        @endforeach
+                                        <li><a href="{{url('/')}}" class="{{url()->current() == url('/') ? 'active' : ''}}">Home</a></li>
+                                        <li class="dropdown_li">
+                                            <a href="#" class="{{ @Str::contains(url()->current(), 'pages') ? 'active' : '' }}">
+                                                <span>Pages</span>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <ul>
+                                                    <li><a href="{{url('/pages/about')}}">About</a></li>
+                                                    <li><a href="{{url('/pages/contact')}}">Contact</a></li>
+                                                    <li><a href="{{url('/pages/gallery')}}">Gallery</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown_li">
+                                            <a href="#" class="{{ @Str::contains(url()->current(), 'destination') ? 'active' : '' }}">
+                                                <span>Destination</span>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <ul>
+                                                    @foreach (\App\Models\Destination::all() as $destination)
+                                                    <li><a href="{{url('/destination/'.$destination->id_destination)}}">{{$destination->nama_destination}}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown_li">
+                                            <a href="#" class="{{ @Str::contains(url()->current(), 'tour') ? 'active' : '' }}">
+                                                <span>Tour List</span>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <ul>
+                                                    @foreach (\App\Models\Tour::all() as $tour)
+                                                    <li><a href="{{url('/tour/'.$tour->id_tour)}}">{{$tour->nama_tour}}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="dropdown_li">
+                                            <a href="#" class="{{ @Str::contains(url()->current(), 'tour') ? 'active' : '' }}">
+                                                <span>Boat</span>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <ul>
+                                                    @foreach (\App\Models\Tour::all() as $tour)
+                                                    <li><a href="{{url('/tour/'.$tour->id_tour)}}">{{$tour->nama_tour}}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </li>
                                    </ul>
                                </div>
                                <div class="bottom">
                                    <div class="tel">
                                         @foreach (\App\Models\System::where('desc', 'contact')->get() as $contact)
-                                        <a href="tel:{{$contact->value}}">{{$contact->value}}</a><br>
+                                        <a href="https://wa.me/{{$contact->value}}">{{$contact->value}}</a><br>
                                         @endforeach
                                    </div>
                                    <div class="email">
@@ -117,7 +151,7 @@
                            </ul>
                        </div>
                        <div class="socials">
-                           <a href="#" class="a instagram"></a>
+                           <a href="https://www.instagram.com/diabloboss.asia/" target="_blank" class="a instagram"></a>
                            <a href="#" class="a whatsapp"></a>
                        </div>
                    </div>
@@ -127,7 +161,7 @@
                <div class="wrap">
                    <div class="wrap_float">
                        <div class="footer_center_left">
-                           <a href="index.html" class="logo">DIABLO BOSS ASIA VENTURE</a>
+                           <a href="index.html" class="logo">DIABLOBOSS ASIA VENTURE</a>
                            <div class="text">
                                {{-- {{ \App\Models\System::where('desc', 'footer_desc')->first()->value }} --}}
                            </div>
@@ -137,21 +171,21 @@
                            <div class="text">
                                 <p>Address: <b>{{ \App\Models\System::where('desc', 'address')->first()->value }}</b> </p>
                                 @foreach (\App\Models\System::where('desc', 'contact')->get() as $contact)
-                                <p>Phone: <a href="#">{{$contact->value}}</a></p>
+                                <p>Phone: <a href="https://wa.me/{{$contact->value}}" target="_blank">{{$contact->value}}</a></p>
                                 @endforeach
 
                                 <p><a href="#">{{ \App\Models\System::where('desc', 'email')->first()->value }}</a></p>
                            </div>
                        </div>
                        <div class="mobile_socials">
-                           <a href="#" class="a instagram"></a>
+                           <a href="https://www.instagram.com/diabloboss.asia/" target="_blank" class="a instagram"></a>
                            <a href="#" class="a whatsapp"></a>
                        </div>
                    </div>
                </div>
            </div>
            <div class="footer_bottom">
-               Copyright 2023 <a href="#">Diablo Boss Asia Adventure</a> | All Right Reserved
+               Copyright 2023 <a href="#">DiabloBoss Asia Adventure</a> | All Right Reserved
            </div>
         </div>
     </div>

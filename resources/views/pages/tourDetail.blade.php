@@ -1,14 +1,5 @@
 @extends('templates/header')
 @section('contents')
-<div class="breadcrumbs">
-    <div class="wrap">
-        <div class="wrap_float">
-            <a href="{{url('/tour')}}">Tour</a>
-            <span class="separator">/</span>
-            <a href="#" class="current">{{$tour->nama_tour}}</a>
-        </div>
-    </div>
-</div>
 <div class="image_bg--single" style="background-image: url({{asset('uploads/'.$tour->foto)}});"></div>
 <div class="page_content single-page tour-single">
     <div class="content-head">

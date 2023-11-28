@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PublicController::class, 'index']);
-// Route::get('/pages/about', [PublicController::class, 'about']);
+Route::get('/pages/about', [PublicController::class, 'about']);
+Route::get('/pages/contact', [PublicController::class, 'contact']);
 
 Route::get('/destination', [PublicController::class, 'destination']);
 Route::get('/destination/{id}', [PublicController::class, 'destinationDetail']);
@@ -38,7 +39,7 @@ Route::middleware('auth')->group(function () {
     //destintation detail
     Route::get('/admin/destinationDetail', [DestinationDetailController::class, 'index']);
     Route::post('/admin/destinationDetail', [DestinationDetailController::class, 'store']);
-    Route::get('/admin/destinationDetail/getDestinationDetail', [DestinationDetailController::class, 'getDestinationDetail']);
+    Route::get('/admin/destinationDetail/{id}', [DestinationDetailController::class, 'detail']);
     Route::patch('/admin/destinationDetail/edit', [DestinationDetailController::class, 'edit']);
     Route::delete('/admin/destinationDetail/{id}/delete', [DestinationDetailController::class, 'destroy']);
     //destination

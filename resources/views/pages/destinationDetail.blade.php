@@ -1,15 +1,6 @@
 @extends('templates/header')
 @section('contents')
-<div class="breadcrumbs">
-    <div class="wrap">
-        <div class="wrap_float">
-            <a href="{{url('destination')}}">Destination</a>
-            <span class="separator">/</span>
-            <a href="#" class="current">{{$destination->nama_destination}}</a>
-        </div>
-    </div>
-</div>
-<div class="image_bg--single" style="background-image: url({{asset('uploads/destination/'.$destination->foto)}});"></div>
+<div class="image_bg--single" style="background-image: url({{asset('uploads/'.$destination->foto)}});"></div>
 <div class="page_content single-page tour-single">
     <div class="content-head">
         <div class="wrap">
@@ -35,7 +26,7 @@
                             <div class="geo">{{ $destination->nama_destination }}</div>
                         </div>
                         <div class="single-right controls">
-                            <button class="btn getModal" data-href="#book-now"><span>Book now</span></button>
+                            {{-- <button class="btn getModal" data-href="#book-now"><span>Book now</span></button> --}}
                             <div class="slick-arrows tour-single-arrows">
                                 <div class="arrow prev"></div>
                                 <div class="arrow next"></div>
@@ -43,21 +34,11 @@
                         </div>
                     </div>
                     <div class="single-tour-slider" id="single-tour-slider">
+                        @foreach ($details as $detail)
                         <div class="single-tour-slide">
-                            <img src="img/vput1.jpg" class="image-cover" alt="">
+                            <img src="{{asset('uploads/'.$detail->foto)}}" class="image-cover" alt="">
                         </div>
-                        <div class="single-tour-slide">
-                            <img src="img/vput2.jpg" class="image-cover" alt="">
-                        </div>
-                        <div class="single-tour-slide">
-                            <img src="img/vput3.jpg" class="image-cover" alt="">
-                        </div>
-                        <div class="single-tour-slide">
-                            <img src="img/vput4.jpg" class="image-cover" alt="">
-                        </div>
-                        <div class="single-tour-slide">
-                            <img src="img/vput5.jpg" class="image-cover" alt="">
-                        </div>
+                        @endforeach
                     </div>
                    <div class="description single-row">
                        <div class="single-left">
@@ -84,13 +65,15 @@
                     </div>
 
                     <div class="related_tours" id="end-single-content">
+                        @if ($tours->count() > 0)
                         <div class="_title">
                             Related Tours
                         </div>
                         <div class="most_popular__section">
-                           <a href="single.html" class="slider_item" style="background-image: url(img/prevput15.jpg)">
+                            @foreach ($tours as $tour)
+                            <a href="{{url('/tour/'.$tour->id_tour)}}" class="slider_item" style="background-image: url({{asset('uploads/'.$tour->foto)}})">
                                <div class="slider_item__content">
-                                   <div class="rating">
+                                   {{-- <div class="rating">
                                        <div class="stars">
                                            <div class="star active"></div>
                                            <div class="star active"></div>
@@ -101,39 +84,21 @@
                                        <div class="reviews_count">
                                            (2 Reviews)
                                        </div>
-                                   </div>
+                                   </div> --}}
                                    <div class="title">
-                                       Agra, India | from $300
+                                       {{$tour->nama_tour}} | ${{$tour->price_usd}}
                                    </div>
                                    <div class="days">
-                                       <span>7 days</span>
+                                       <span>{{$tour->duration}} days</span>
                                    </div>
                                </div>
                            </a>
+                            @endforeach
 
-                           <a href="single.html" class="slider_item" style="background-image: url(img/prevput12.jpg)">
-                               <div class="slider_item__content">
-                                   <div class="rating">
-                                       <div class="stars">
-                                           <div class="star active"></div>
-                                           <div class="star active"></div>
-                                           <div class="star active"></div>
-                                           <div class="star active"></div>
-                                           <div class="star"></div>
-                                       </div>
-                                       <div class="reviews_count">
-                                           (2 Reviews)
-                                       </div>
-                                   </div>
-                                   <div class="title">
-                                       A tour of the Islands | $3,500
-                                   </div>
-                                   <div class="days">
-                                       <span>7 days</span>
-                                   </div>
-                               </div>
-                           </a>
-                       </div>
+
+                        </div>
+                        @endif
+
                     </div>
 
                 </div>

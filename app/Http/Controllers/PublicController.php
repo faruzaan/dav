@@ -29,9 +29,14 @@ class PublicController extends Controller
         $data['menus'] = Menu::where('parent_id', null)->get();
         $data['footer_menus'] = Menu::all();
         $data['system'] = System::all();
-
-
         return view("pages/about")->with($data);
+    }
+    public function contact(){
+        // $data['destinations'] = Destination::all();
+        $data['menus'] = Menu::where('parent_id', null)->get();
+        $data['footer_menus'] = Menu::all();
+        $data['system'] = System::all();
+        return view("pages/contact")->with($data);
     }
     public function destination(){
         $data['menus'] = Menu::where('parent_id', null)->get();
@@ -45,6 +50,8 @@ class PublicController extends Controller
         $data['footer_menus'] = Menu::all();
         $data['system'] = System::all();
         $data['destination'] = Destination::where('id_destination',$id)->first();
+        $data['details'] = destinationDetail::where('id_destination',$id)->get();
+        $data['tours'] = TourDetail::where('id_destination', $id)->get();
         return view("pages/destinationDetail")->with($data);
     }
     public function tour(){

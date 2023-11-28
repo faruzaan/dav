@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tour;
 use App\Models\TourDetail;
-use App\Models\Program;
-use App\Models\ProgramDetail;
+use App\Models\Itenary;
+use App\Models\ItenaryDetail;
 
 class TourController extends Controller
 {
