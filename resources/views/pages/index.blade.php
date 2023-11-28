@@ -190,7 +190,7 @@
             </div>
             <div class="most_popular__section__slider" id="most_popular__slider">
                 @foreach ($tours as $tour)
-                <a href="single.html" class="slider_item" style="background-image: url({{asset('assets')}}/img/onedaytrip.jpg)">
+                <a href="single.html" class="slider_item" style="background-image: url({{asset('uploads/'.$tour->foto)}})">
                     <div class="slider_item__content">
                         <div class="rating">
                         </div>

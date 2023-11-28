@@ -59,8 +59,8 @@ class TourController extends Controller
         $result= Tour::where('id_tour', $input['id_tour']);
         $status = $result->update($data);
 
-        if($status) return redirect('admin/tour')->with('success', 'Data tour '.$input['nama_tour'].' berhasil diubah');
-        else return redirect('admin/tour')->with('error', 'Data tour '.$input['nama_tour'].' gagal diubah');
+        if($status) return redirect('admin/tour/'.$data['id_tour'])->with('success', 'Data tour '.$input['nama_tour'].' berhasil diubah');
+        else return redirect('admin/tour/'.$data['id_tour'])->with('error', 'Data tour '.$input['nama_tour'].' gagal diubah');
     }
     public function destroy(Request $request, $id){
         $result = Tour::where('id_island', $id)->first();

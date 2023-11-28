@@ -27,7 +27,7 @@
                <div class="wrap_float">
                    <div class="header__top">
                        <div class="tel">
-                            <a href="tel:+62 823 3990 7214">+62 823 3990 7214</a>
+                            <a href="tel:+62 823 3990 7214">+6282339907214</a>
                        </div>
                        <div class="email">
                             @foreach (\App\Models\System::where('desc','email')->get() as $contact)
@@ -167,58 +167,7 @@
     </div>
     <div class="overlay" id="overlay"></div>
 
-    <div style="display: none;">
-        <div class="modal modal_book_now" id="book-now">
-            <div class="modal_wrap">
-                <div class="modal-head">
-                    <img src="{{asset('assets')}}/img/vput2.jpg" class="image-cover" alt="">
-                </div>
-                <div class="modal-body">
-                    <div class="tags">
-                        <div class="tag discount">20% off</div>
-                        <div class="tag new">New</div>
-                    </div>
-                    <div class="modal-title">
-                        America, San Francisco | $3,500
-                    </div>
-                    <div class="fields">
-                        <div class="field half">
-                            <label class="label" for="name-2">Full Name*</label>
-                            <div class="input_wrap">
-                                <input type="text" class="input" id="name-2">
-                            </div>
-                        </div>
-                        <div class="field half">
-                            <label class="label" for="email-2">Email Address*</label>
-                            <div class="input_wrap">
-                                <input type="email" class="input" id="email-2">
-                            </div>
-                        </div>
-                        <div class="field half">
-                            <label class="label" for="date-2a">Travel Date*</label>
-                            <div class="input_wrap calendar-field">
-                                <input type="text" class="input js_calendar" id="date-2a">
-                            </div>
-                        </div>
-                        <div class="field half">
-                            <p class="label">Person*</p>
-                            <div class="input_wrap">
-                                <input type="text" class="input" id="date-2">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label" for="enquiry-2">Your Enquiry*</label>
-                            <div class="textarea_wrap">
-                                <textarea class="textarea" id="enquiry-2"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn submit">Sumbit</button>
-                </div>
-            </div>
-            <div class="modal_close"></div>
-        </div>
-    </div>
+
 
     <script defer src="{{asset('assets')}}/js/jquery.min.js"></script>
     <script defer src="{{asset('assets')}}/js/jquery-ui.min.js"></script>

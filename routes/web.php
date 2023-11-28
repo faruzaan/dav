@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PublicController::class, 'index']);
-Route::get('/pages/about', [PublicController::class, 'about']);
+// Route::get('/pages/about', [PublicController::class, 'about']);
 
 Route::get('/destination', [PublicController::class, 'destination']);
 Route::get('/destination/{id}', [PublicController::class, 'destinationDetail']);

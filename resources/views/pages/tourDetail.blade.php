@@ -70,7 +70,7 @@
                     <div class="single-content page--content details">
                         <h2>Tour details</h2>
                         {!! $tour->desc_header !!}
-                        <p><b>The trip starts at 06.00 - 16.00</b></p>
+                        {!! $tour->header1 !!}
                         <div class="list-block">
                             <ul class="true">
                                 @if ($tourDetails->count()%2 == 0)
@@ -194,12 +194,117 @@
                         </div>
                         @endif
                     </div>
+                    <div class="related_tours" id="end-single-content">
+                        {{-- <div class="_title">
+                            Related Tours
+                        </div>
+                        <div class="most_popular__section">
+                           <a href="single.html" class="slider_item" style="background-image: url(img/prevput15.jpg)">
+                               <div class="slider_item__content">
+                                   <div class="rating">
+                                       <div class="stars">
+                                           <div class="star active"></div>
+                                           <div class="star active"></div>
+                                           <div class="star active"></div>
+                                           <div class="star active"></div>
+                                           <div class="star"></div>
+                                       </div>
+                                       <div class="reviews_count">
+                                           (2 Reviews)
+                                       </div>
+                                   </div>
+                                   <div class="title">
+                                       Agra, India | from $300
+                                   </div>
+                                   <div class="days">
+                                       <span>7 days</span>
+                                   </div>
+                               </div>
+                           </a>
+
+                           <a href="single.html" class="slider_item" style="background-image: url(img/prevput12.jpg)">
+                               <div class="slider_item__content">
+                                   <div class="rating">
+                                       <div class="stars">
+                                           <div class="star active"></div>
+                                           <div class="star active"></div>
+                                           <div class="star active"></div>
+                                           <div class="star active"></div>
+                                           <div class="star"></div>
+                                       </div>
+                                       <div class="reviews_count">
+                                           (2 Reviews)
+                                       </div>
+                                   </div>
+                                   <div class="title">
+                                       A tour of the Islands | $3,500
+                                   </div>
+                                   <div class="days">
+                                       <span>7 days</span>
+                                   </div>
+                               </div>
+                           </a>
+                       </div> --}}
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
     <div class="mobile-fixed-bottom getModal" data-href="#book-now">
         Book now
+    </div>
+</div>
+<div style="display: none;">
+    <div class="modal modal_book_now" id="book-now">
+        <div class="modal_wrap">
+            <div class="modal-head">
+                <img src="{{asset('assets')}}/img/vput2.jpg" class="image-cover" alt="">
+            </div>
+            <div class="modal-body">
+                {{-- <div class="tags">
+                    <div class="tag discount">20% off</div>
+                    <div class="tag new">New</div>
+                </div> --}}
+                <div class="modal-title">
+                    {{$tour->nama_tour}} | ${{$tour->price_usd}}
+                </div>
+                <div class="fields">
+                    <div class="field half">
+                        <label class="label" for="name-2">Full Name*</label>
+                        <div class="input_wrap">
+                            <input type="text" class="input" id="name-2">
+                        </div>
+                    </div>
+                    <div class="field half">
+                        <label class="label" for="email-2">Email Address*</label>
+                        <div class="input_wrap">
+                            <input type="email" class="input" id="email-2">
+                        </div>
+                    </div>
+                    <div class="field half">
+                        <label class="label" for="date-2a">Travel Date*</label>
+                        <div class="input_wrap calendar-field">
+                            <input type="text" class="input js_calendar" id="date-2a">
+                        </div>
+                    </div>
+                    <div class="field half">
+                        <p class="label">Phone*</p>
+                        <div class="input_wrap">
+                            <input type="text" class="input" id="date-2">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="enquiry-2">Your Enquiry*</label>
+                        <div class="textarea_wrap">
+                            <textarea class="textarea" id="enquiry-2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn submit">Submit</button>
+            </div>
+        </div>
+        <div class="modal_close"></div>
     </div>
 </div>
 @endsection
