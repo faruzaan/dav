@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Destination;
 use App\Models\DestinationDetail;
-use App\Models\Product;
+use App\Models\Boat;
 use App\Models\Menu;
 use App\Models\System;
 use App\Models\Tour;
@@ -16,7 +16,7 @@ class PublicController extends Controller
 {
     public function index(){
         $data['destinations'] = Destination::all();
-        $data['products'] = Product::all();
+        $data['products'] = Boat::all();
         $data['menus'] = Menu::where('parent_id', null)->get();
         $data['footer_menus'] = Menu::all();
         $data['system'] = System::all();
@@ -56,7 +56,7 @@ class PublicController extends Controller
         }elseif ($data['destination']->nama_destination == 'Flores') {
             $data['tours'] = Tour::whereIn('id_tour', [4, 5])->get();
         }else {
-            $data['tours'] = null;
+            $data['tours'] = Tour::whereIn('id_tour', [99,90])->get();
         }
 
         return view("pages/destinationDetail")->with($data);
