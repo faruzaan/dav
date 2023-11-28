@@ -54,6 +54,7 @@
                     @foreach ($result as $row)
                       <tr>
                         <td>{{ !empty($i) ? ++$i : $i = 1 }}</td>
+                        <td><img src="{{asset('uploads/'.$row->foto)}}" width="100px" alt=""></td>
                         <td><a href="{{url('destination/'. ($row->id_destination == null ? '' : $row->id_destination) )}}">{{ $row->Destination == null ? '' : $row->Destination->nama_destination }}</a></td>
                         <td><a href="{{url('/admin/destinationDetail/'.$row->id_destination_detail)}}">{{ $row->nama_destination }}</a></td>
                         <td>
@@ -90,23 +91,24 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{{url('admin/destination')}}" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                <form method="POST" action="{{url('admin/destinationDestination')}}" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="modal-body">
                         <div class="form-group">
                             <label for="island">Destination</label>
                             <input type="text" class="form-control" id="island" name="nama_destination" placeholder="Enter destination">
                         </div>
-                        {{-- <label for="island">Island</label> --}}
-                        {{-- <select class="form-control select2" name='id_island'>
-                            @foreach (\App\Models\Destination::all() as $island)
-                              <option value="{{ $island->id_island }}">{{ $island->nama_island }}</option>
+                        <label for="island">Island</label>
+                        <select class="form-control" name='id_destination'>
+                            <option value="" hidden>Select Destination</option>
+                            @foreach (\App\Models\Destination::all() as $destination)
+                              <option value="{{ $destination->id_destination }}">{{ $destination->nama_destination }}</option>
                             @endforeach
-                        </select> --}}
-                        {{-- <div class="form-group">
+                        </select>
+                        <div class="form-group">
                             <label for="" class="control-label">Foto</label>
                             <input type="file" class="form-control" name="foto">
-                        </div> --}}
+                        </div>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

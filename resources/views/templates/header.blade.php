@@ -89,13 +89,13 @@
                                             </div>
                                         </li>
                                         <li class="dropdown_li">
-                                            <a href="#" class="{{ @Str::contains(url()->current(), 'tour') ? 'active' : '' }}">
+                                            <a href="#" class="{{ @Str::contains(url()->current(), 'boat') ? 'active' : '' }}">
                                                 <span>Boat</span>
                                             </a>
                                             <div class="dropdown-menu">
                                                 <ul>
-                                                    @foreach (\App\Models\Tour::all() as $tour)
-                                                    <li><a href="{{url('/tour/'.$tour->id_tour)}}">{{$tour->nama_tour}}</a></li>
+                                                    @foreach (\App\Models\Boat::all() as $boat)
+                                                    <li><a href="{{url('/boat/'.$boat->id_boatr)}}">{{$boat->boat}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </div>

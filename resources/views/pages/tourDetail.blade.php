@@ -250,7 +250,7 @@
     <div class="modal modal_book_now" id="book-now">
         <div class="modal_wrap">
             <div class="modal-head">
-                <img src="{{asset('assets')}}/img/vput2.jpg" class="image-cover" alt="">
+                <img src="{{asset('uploads')}}/header.jpg" class="image-cover" alt="">
             </div>
             <div class="modal-body">
                 {{-- <div class="tags">

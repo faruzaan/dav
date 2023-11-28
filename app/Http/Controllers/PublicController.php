@@ -51,7 +51,14 @@ class PublicController extends Controller
         $data['system'] = System::all();
         $data['destination'] = Destination::where('id_destination',$id)->first();
         $data['details'] = destinationDetail::where('id_destination',$id)->get();
-        $data['tours'] = TourDetail::where('id_destination', $id)->get();
+        if($data['destination']->nama_destination == 'Labuan Bajo'){
+            $data['tours'] = Tour::whereIn('id_tour', [1, 2, 3])->get();
+        }elseif ($data['destination']->nama_destination == 'Flores') {
+            $data['tours'] = Tour::whereIn('id_tour', [4, 5])->get();
+        }else {
+            $data['tours'] = null;
+        }
+
         return view("pages/destinationDetail")->with($data);
     }
     public function tour(){
