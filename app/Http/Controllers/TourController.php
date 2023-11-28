@@ -70,7 +70,7 @@ class TourController extends Controller
     public function detail($id){
         $data['result'] = Tour::where('id_tour', $id)->first();
         $data['tourDetails'] = TourDetail::where('id_tour', $id)->get();
-        $data['programs'] = Program::where('id_tour', $id)->get();
+        $data['itenaries'] = Itenary::where('id_tour', $id)->get();
         return view("admin/tour/detail")->with($data);
     }
     public function destroyDetail(Request $request, $id){

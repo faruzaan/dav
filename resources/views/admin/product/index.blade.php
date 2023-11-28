@@ -4,8 +4,6 @@
 <link rel="stylesheet" href="{{asset('assets')}}/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="{{asset('assets')}}/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-<link rel="stylesheet" href="{{asset('assets')}}/admin/plugins/select2/css/select2.min.css">
-<link rel="stylesheet" href="{{asset('assets')}}/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 @endpush
 @section('contents')
     <!-- Content Header (Page header) -->
@@ -101,7 +99,7 @@
                             <input type="text" class="form-control" id="product" name="nama_product" placeholder="Enter product">
                         </div>
                         <label for="island">Category</label>
-                        <select class="form-control select2" name='id_category'>
+                        <select class="form-control" name='id_category'>
                             @foreach (\App\Models\Category::all() as $category)
                               <option value="{{ $category->id_category }}">{{ $category->nama_category }}</option>
                             @endforeach
@@ -141,7 +139,7 @@
                       <input type="text" class="form-control" id="nama_product_edit" name="nama_product" value="">
                   </div>
                   <label for="island">Island</label>
-                  <select class="form-control select2" name='id_category' id="id_category_edit">
+                  <select class="form-control" name='id_category' id="id_category_edit">
                         @foreach (\App\Models\Category::all() as $category)
                           <option value="{{ $category->id_category }}">{{ $category->nama_category }}</option>
                         @endforeach
@@ -176,7 +174,6 @@
 <script src="{{asset('assets')}}/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="{{asset('assets')}}/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{asset('assets')}}/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script src="{{asset('assets')}}/admin/plugins/select2/js/select2.full.min.js"></script>
 <script>
   $(function () {
     $("#example1").DataTable({
