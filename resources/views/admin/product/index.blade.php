@@ -55,8 +55,8 @@
                         <td>
                             <img src="{{asset('uploads/'.$row->foto)}}" width="80px" class="img" alt="">
                         </td>
-                        <td>{{ $row->nama_product }}</td>
-                        <td>{{ $row->category->nama_category }}</td>
+                        <td>{{ $row->boat }}</td>
+                        <td>{{ $row->boat }}</td>
                         <td>
                           <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_product }}">Edit</button>
                           <form action="{{url("admin/product/$row->id_product/delete")}}" method="POST" style="display: inline;">
@@ -100,7 +100,7 @@
                         </div>
                         <label for="island">Category</label>
                         <select class="form-control" name='id_category'>
-                            @foreach (\App\Models\Category::all() as $category)
+                            @foreach (\App\Models\BoatDetails::all() as $category)
                               <option value="{{ $category->id_category }}">{{ $category->nama_category }}</option>
                             @endforeach
                         </select>
@@ -140,7 +140,7 @@
                   </div>
                   <label for="island">Island</label>
                   <select class="form-control" name='id_category' id="id_category_edit">
-                        @foreach (\App\Models\Category::all() as $category)
+                        @foreach (\App\Models\BoatDetails::all() as $category)
                           <option value="{{ $category->id_category }}">{{ $category->nama_category }}</option>
                         @endforeach
                   </select>

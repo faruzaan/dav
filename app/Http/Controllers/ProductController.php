@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Product;
+use App\Models\Boat;
 
 class ProductController extends Controller
 {
     public function index(){
-        $data['result'] = Product::all();
+        $data['result'] = Boat::all();
         return view("admin/product/index")->with($data);
     }
     public function store(Request $request){
@@ -29,14 +29,14 @@ class ProductController extends Controller
             $input['foto'] = $filename;
         }
 
-        $status = Product::create($input);
+        $status = Boat::create($input);
 
         if($status) return redirect('admin/product')->with('success', 'Data product '.$input['nama_product'].' berhasil ditambahkan');
         else return redirect('admin/product')->with('error', 'Data product '.$input->nama_product.' gagal ditambahkan');
     }
     public function getProduct(Request $request)
     {
-        $data = Product::where('id_product', $request->input('data'))->get();
+        $data = Boat::where('id_product', $request->input('data'))->get();
         return response()->json($data);
     }
     public function edit(Request $request){
@@ -49,14 +49,14 @@ class ProductController extends Controller
         $data['id_product']      = $input['id_product'];
         $data['nama_product']    = $input['nama_product'];
 
-        $result= Product::where('id_product', $input['id_product']);
+        $result= Boat::where('id_product', $input['id_product']);
         $status = $result->update($data);
 
         if($status) return redirect('admin/product')->with('success', 'Data product '.$input['nama_product'].' berhasil diubah');
         else return redirect('admin/product')->with('error', 'Data product '.$input['nama_product'].' gagal diubah');
     }
     public function destroy(Request $request, $id){
-        $result = Product::where('id_product', $id)->first();
+        $result = Boat::where('id_product', $id)->first();
         $status = $result->delete();
 
         if($status) return redirect('admin/product')->with('success', 'Data product berhasil dihapus');

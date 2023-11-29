@@ -15,6 +15,6 @@ class Boat extends Model
         'boat'
     ];
     public function Detail(){
-        return $this->hasMany('\App\Models\BoatDetail', 'id_boat', 'id_boat');
+        return $this->hasMany('\App\Models\BoatDetails', 'id_boat', 'id_boat');
     }
 }

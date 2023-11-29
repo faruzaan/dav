@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BoatDetail extends Model
+class BoatDetails extends Model
 {
     public $primaryKey = 'id_boat_detail';
 
