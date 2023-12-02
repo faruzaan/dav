@@ -55,7 +55,7 @@
                       <tr>
                         <td>{{ !empty($i) ? ++$i : $i = 1 }}</td>
                         <td><img src="{{asset('uploads/'.$row->foto)}}" width="100px" alt=""></td>
-                        <td><a href="{{url('destination/'. ($row->id_destination == null ? '' : $row->id_destination) )}}">{{ $row->Destination == null ? '' : $row->Destination->nama_destination }}</a></td>
+                        <td><a href="{{url('admin/destination/'. ($row->id_destination == null ? '' : $row->id_destination) )}}">{{ $row->Destination == null ? '' : $row->Destination->nama_destination }}</a></td>
                         <td><a href="{{url('/admin/destinationDetail/'.$row->id_destination_detail)}}">{{ $row->nama_destination }}</a></td>
                         <td>
                           <a href="{{url('admin/destinationDetail/'.$row->id_destination_detail)}}" class="btn btn-warning edit">Edit</a>
@@ -91,7 +91,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{{url('admin/destinationDestination')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{url('admin/destinationDetail')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
                         <div class="form-group">

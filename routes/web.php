@@ -59,11 +59,15 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/admin/tourDetail/{id}/delete', [TourController::class, 'destroyDetail']);
     Route::post('/admin/tour/tourDetails', [TourController::class, 'addDetail']);
+    Route::post('/admin/tour/tourDetails/edit', [TourController::class, 'editDetail']);
 
-    Route::post('/admin/program/add', [TourController::class, 'addProgram']);
-    Route::get('/admin/tour/getProgram', [TourController::class, 'getProgram']);
-    Route::delete('/admin/program/{id}/delete', [TourController::class, 'destroyProgram']);
+    Route::post('/admin/itenary/add', [TourController::class, 'addItenary']);
+    Route::post('/admin/itenary/edit', [TourController::class, 'editItenary']);
+    Route::delete('/admin/itenary/{id}/delete', [TourController::class, 'deleteItenary']);
 
+    Route::post('/admin/addDetailItenary', [TourController::class, 'addDetailItenary']);
+    Route::delete('admin/itenaryDetail/{id}/delete', [TourController::class, 'deleteDetailItenary']);
+    Route::post('admin/editDetailItenary/', [TourController::class, 'editDetailItenary']);
 
     //category
     Route::get('/admin/category', [CategoryController::class, 'index']);

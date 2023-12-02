@@ -42,7 +42,6 @@
                   <tr>
                     <th>No</th>
                     <th>Tour</th>
-                    <th>Island</th>
                     <th>Destination</th>
                     <th>Action</th>
                   </tr>
@@ -52,10 +51,10 @@
                       <tr>
                         <td>{{ !empty($i) ? ++$i : $i = 1 }}</td>
                         <td><a href="{{url("/admin/tour/$row->id_tour")}}">{{ $row->nama_tour }}</a></td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td>{{$row->Detail->count()}}</td>
                         <td>
-                          <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_tour }}">Edit</button>
+                          {{-- <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit" data-id="{{ $row->id_tour }}">Edit</button> --}}
+                          <a class="btn btn-warning edit" href="{{url('admin/tour/'.$row->id_tour)}}">Edit</a>
                           <form action="{{url("admin/tour/$row->id_tour/delete")}}" method="POST" style="display: inline;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

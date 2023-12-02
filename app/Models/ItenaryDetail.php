@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItenaryDetail extends Model
 {
+    public $primaryKey = 'id_itenary_detail';
+
     protected $table = 'tb_itenary_detail';
 
     protected $fillable = [

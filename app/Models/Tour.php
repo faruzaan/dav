@@ -14,7 +14,7 @@ class Tour extends Model
     protected $fillable = [
         'nama_tour', 'duration', 'desc', 'desc_header', 'tour_detail', 'include', 'header1', 'header2', 'price_usd', 'price_idr', 'foto', 'program', 'content2'
     ];
-    public function Tour(){
-        return $this->hasOne('App\Models\Tour', 'id_tour', 'id_tour');
+    public function Detail(){
+        return $this->hasMany('App\Models\TourDetail', 'id_tour', 'id_tour');
     }
 }
